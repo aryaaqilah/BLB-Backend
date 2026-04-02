@@ -70,8 +70,9 @@ console.log("CLIENT_URL:", process.env.CLIENT_URL);
 
 // === Folder publik untuk file model (GLB, dsb) ===
 // Ini akan melayani file statis di URL: http://localhost:5000/models/namafile.glb
-app.use("/models", express.static(path.join(__dirname, "public", "models")));
-app.use("/images", express.static(path.join(__dirname, "uploads")));
+// === Static file (IMPORTANT FIX) ===
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+app.use("/models", express.static(path.join(process.cwd(), "public", "models")));
 
 // --- PENTING: Struktur database ini membutuhkan folder 'public/models' ---
 // 
