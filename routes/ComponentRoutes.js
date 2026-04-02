@@ -3,7 +3,7 @@ import Component from "../models/Component.js";
 
 const router = express.Router();
 
-// ➕ Tambah Component Baru (POST /api/components)
+
 router.post("/", async (req, res) => {
   try {
     const component = new Component(req.body);
@@ -12,15 +12,17 @@ router.post("/", async (req, res) => {
   } catch (err) { res.status(400).json({ error: err.message }); }
 });
 
-// 📚 Ambil Semua Component (GET /api/components)
+
 router.get("/", async (req, res) => {
   try {
-    const components = await Component.find();
+    const components = await Component.find({
+      _id: { $ne: "694e44d385890620cea2e870" }
+    });
     res.json(components);
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
-// 📖 Ambil Component Berdasarkan ID (GET /api/components/:id)
+
 router.get("/:id", async (req, res) => {
   try {
     const component = await Component.findById(req.params.id);
@@ -29,7 +31,7 @@ router.get("/:id", async (req, res) => {
   } catch (err) { res.status(400).json({ error: err.message }); }
 });
 
-// ✏️ Update Component (PUT /api/components/:id)
+
 router.put("/:id", async (req, res) => {
   try {
     const component = await Component.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
@@ -38,7 +40,7 @@ router.put("/:id", async (req, res) => {
   } catch (err) { res.status(400).json({ error: err.message }); }
 });
 
-// 🗑️ Hapus Component (DELETE /api/components/:id)
+
 router.delete("/:id", async (req, res) => {
   try {
     const component = await Component.findByIdAndDelete(req.params.id);

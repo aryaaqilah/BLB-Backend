@@ -9,7 +9,7 @@ const snap = new midtransClient.Snap({
   serverKey: "Mid-server-DBPNAdBY62uOiUXvrVnr4RzK",
 });
 
-// POST /api/payment/create-transaction
+
 router.post("/create-transaction", async (req, res) => {
   try {
     const { orderId, amount, customer } = req.body;
@@ -64,11 +64,11 @@ const restoreStock = async (orderId) => {
   for (const item of items) {
     await Item.updateOne(
       { _id: item.ItemId._id },
-      { $inc: { stok: item.Quantity } } // atau sesuai quantity
+      { $inc: { stok: item.Quantity } } 
     );
   }
 
-  console.log("✅ Stok dikembalikan");
+  
 };
 
 router.post("/api/payment/notification", async (req, res) => {
@@ -78,11 +78,11 @@ router.post("/api/payment/notification", async (req, res) => {
     const orderId = data.order_id;
     const status = data.transaction_status;
 
-    console.log("📩 Midtrans webhook:", status);
+    
 
     if (status === "settlement") {
       await fetch(
-        `${process.env.REACT_APP_API_URL}/api/orders/${orderId}/status-pembayaran`,
+        `http://localhost:5000/api/orders/${orderId}/status-pembayaran`,
         {
           method: "PATCH",
           headers: {
@@ -95,7 +95,7 @@ router.post("/api/payment/notification", async (req, res) => {
     
     else if (status === "expire") {
       await fetch(
-        `${process.env.REACT_APP_API_URL}/api/orders/${orderId}/status-pembayaran`,
+        `http://localhost:5000/api/orders/${orderId}/status-pembayaran`,
         {
           method: "PATCH",
           headers: {
@@ -105,13 +105,13 @@ router.post("/api/payment/notification", async (req, res) => {
         }
       );
 
-      // 🔥 BALIKKAN STOK
+      
       await restoreStock(orderId);
     } 
     
     else if (status === "cancel") {
       await fetch(
-        `${process.env.REACT_APP_API_URL}/api/orders/${orderId}/status-pembayaran`,
+        `http://localhost:5000/api/orders/${orderId}/status-pembayaran`,
         {
           method: "PATCH",
           headers: {
@@ -121,7 +121,7 @@ router.post("/api/payment/notification", async (req, res) => {
         }
       );
 
-      // 🔥 BALIKKAN STOK
+      
       await restoreStock(orderId);
     }
 
