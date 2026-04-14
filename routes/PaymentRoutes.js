@@ -25,9 +25,9 @@ router.post("/create-transaction", async (req, res) => {
       },
 
     callbacks: {
-        finish: "http://localhost:3000/profile",
-        error: "http://localhost:3000/payment-failed",
-        pending: "http://localhost:3000/payment-pending",
+        finish: "https://blb-go-live.vercel.app/profile",
+        error: "https://blb-go-live.vercel.app/payment-failed",
+        pending: "https://blb-go-live.vercel.app/payment-pending",
     },
     };
 
@@ -82,7 +82,7 @@ router.post("/api/payment/notification", async (req, res) => {
 
     if (status === "settlement") {
       await fetch(
-        `http://localhost:5000/api/orders/${orderId}/status-pembayaran`,
+        `${process.env.REACT_APP_API_URL}/api/orders/${orderId}/status-pembayaran`,
         {
           method: "PATCH",
           headers: {
@@ -95,7 +95,7 @@ router.post("/api/payment/notification", async (req, res) => {
     
     else if (status === "expire") {
       await fetch(
-        `http://localhost:5000/api/orders/${orderId}/status-pembayaran`,
+        `${process.env.REACT_APP_API_URL}/api/orders/${orderId}/status-pembayaran`,
         {
           method: "PATCH",
           headers: {
@@ -111,7 +111,7 @@ router.post("/api/payment/notification", async (req, res) => {
     
     else if (status === "cancel") {
       await fetch(
-        `http://localhost:5000/api/orders/${orderId}/status-pembayaran`,
+        `${process.env.REACT_APP_API_URL}/api/orders/${orderId}/status-pembayaran`,
         {
           method: "PATCH",
           headers: {
