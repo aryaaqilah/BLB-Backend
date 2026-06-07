@@ -10,7 +10,7 @@ import userRoutes from "./routes/UserRoutes.js";
 import shopRoutes from "./routes/ShopRoutes.js";
 import productRoutes from "./routes/ProductRoutes.js";
 import productDetailsRoutes from "./routes/ProductDetailRoutes.js";
-import orderRoutes from "./routes/orderRoutes.js";
+import orderRoutes from "./routes/OrderRoutes.js";
 import design3DRoutes from "./routes/3dModelRoutes.js";
 import ratingRoutes from "./routes/RatingRoutes.js";
 import paymentRoutes from "./routes/PaymentRoutes.js";
