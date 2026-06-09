@@ -16,8 +16,8 @@ const productSchema = new mongoose.Schema({
 
   Image: {
     type: String,
-    required: true,
-    maxlength: 255,
+    required: true
+    // maxlength: 255,
   },
 
   ThreeDModel: {
