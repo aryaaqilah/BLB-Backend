@@ -111,6 +111,15 @@ app.use("/api/districts", districtRoutes);
 app.use("/api/postalcodes", postalCodeRoutes);
 app.use("/api/changelogs", changeLogRoutes);
 
+app.use(express.json({
+  limit: "50mb"
+}));
+
+app.use(express.urlencoded({
+  limit: "50mb",
+  extended: true
+}));
+
 app.get("/", (req, res) => {
   res.send("✅ Backend florist-3d API is running!");
 });
