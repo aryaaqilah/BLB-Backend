@@ -55,7 +55,7 @@ const productSchema = new mongoose.Schema({
 
   Tipe: {
     type: String,
-    enum: ["Segar", "Buatan", "Kering"],
+    enum: ["Segar", "Buatan", "Kering", "custom"],
     default: "Segar",
     required: true,
     // maxlength: 20,
