@@ -4,7 +4,7 @@ const addressSchema = new mongoose.Schema({
   RecipientNumber: {
     type: String,
     required: true,
-    maxlength: 15,
+    // maxlength: 15,
     trim: true,
   },
 
