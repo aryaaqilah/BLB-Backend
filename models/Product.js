@@ -4,7 +4,7 @@ const productSchema = new mongoose.Schema({
   Name: {
     type: String,
     required: true,
-    maxlength: 100,
+    // maxlength: 100,
     trim: true,
   },
 
@@ -29,7 +29,7 @@ const productSchema = new mongoose.Schema({
   Memo: {
     type: String,
     required: false,
-    maxlength: 500,
+    // maxlength: 500,
     trim: true,
   },
 
@@ -58,7 +58,7 @@ const productSchema = new mongoose.Schema({
     enum: ["Segar", "Buatan", "Kering"],
     default: "Segar",
     required: true,
-    maxlength: 20,
+    // maxlength: 20,
   },
 
   IsDeleted: {
